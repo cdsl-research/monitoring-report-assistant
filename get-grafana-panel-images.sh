@@ -3,8 +3,28 @@
 EXPORT_DIR="$(pwd)"
 GRAFANA_URL="http://monitoring-master-ml:30080"
 GRAFANA_AUTH="admin:admin"
-IMAGE_WIDTH=800
 IMAGE_HEIGHT=500
+IMAGE_WIDTH=800 
+
+# スクリーンショットを取得するパネル(PanelID)と、パネルが属するダッシュボード(DashboardID)を指定する
+declare -A DASHBOARDS=(
+  [aefowcgoe7apsd]="1,2,4,5,6,7,8"
+  [aefp3nsnews1sb]="1"
+  [aefp1an9r7zswa]="1,2,3,4"
+  [befp3fsjb13pcd]="1"
+  [bei9na4x5w64gd]="1,2,3,4"
+)
+# DashboardIDとダッシュボード名を指定する
+declare -A NAMES=(
+  [aefowcgoe7apsd]="External-Clematis-Node-Check"
+  [aefp3nsnews1sb]="External-OpenVPN-Check"
+  [aefp1an9r7zswa]="External-ESXi-Check"
+  [befp3fsjb13pcd]="Internal-NAS-Check"
+  [bei9na4x5w64gd]="Internal-ESXi-Check"
+)
+# 指定したダッシュボードのうち、スクリーンショットを取得する順番を指定する
+dashboard_order=("aefowcgoe7apsd" "aefp3nsnews1sb" "aefp1an9r7zswa" "befp3fsjb13pcd" "bei9na4x5w64gd")
+
 
 # エクスポート先の確認の表示を行う
 read -p "Are you sure you want to export to \"${EXPORT_DIR}\"? [Y/n]: " confirm
@@ -50,26 +70,6 @@ END_TIME_JST=$(echo "$time_range" | cut -d'-' -f2)
 # JSTからUTCに変換する
 START_TIME_UTC=$(date -d "${EXPORT_DATE} ${START_TIME_JST} JST" +%H:%M:%S)
 END_TIME_UTC=$(date -d "${EXPORT_DATE} ${END_TIME_JST} JST" +%H:%M:%S)
-
-# スクリーンショットを取得するパネル(PanelID)と、パネルが属するダッシュボード(DashboardID)を指定する
-declare -A DASHBOARDS=(
-  [aefowcgoe7apsd]="1,2,4,5,6,7,8"
-  [aefp3nsnews1sb]="1"
-  [aefp1an9r7zswa]="1,2,3,4"
-  [befp3fsjb13pcd]="1"
-  [bei9na4x5w64gd]="1,2,3,4"
-)
-# DashboardIDとダッシュボード名を指定する
-declare -A NAMES=(
-  [aefowcgoe7apsd]="External-Clematis-Node-Check"
-  [aefp3nsnews1sb]="External-OpenVPN-Check"
-  [aefp1an9r7zswa]="External-ESXi-Check"
-  [befp3fsjb13pcd]="Internal-NAS-Check"
-  [bei9na4x5w64gd]="Internal-ESXi"
-)
-
-# 指定したダッシュボードのスクリーンショットの順番を指定する
-dashboard_order=("aefowcgoe7apsd" "aefp3nsnews1sb" "aefp1an9r7zswa" "befp3fsjb13pcd" "bei9na4x5w64gd")
 
 # ダッシュボード内のパネルのスクリーンショットを取得する
 for dashboard_id in "${dashboard_order[@]}"; do
