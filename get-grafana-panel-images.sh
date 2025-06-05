@@ -1,10 +1,12 @@
 #!/bin/bash
 
-EXPORT_DIR="$(pwd)"
+EXPORT_DIR="/home/cdsl/monitoring-report-assistant/grafana-panel-images"
 GRAFANA_URL="http://monitoring-master-ml:30080"
 GRAFANA_AUTH="admin:admin"
 IMAGE_HEIGHT=500
 IMAGE_WIDTH=800 
+
+rm /home/cdsl/monitoring-report-assistant/grafana-panel-images/*.png
 
 # スクリーンショットを取得するパネル(PanelID)と、パネルが属するダッシュボード(DashboardID)を指定する
 declare -A DASHBOARDS=(
@@ -23,15 +25,15 @@ declare -A NAMES=(
   [bei9na4x5w64gd]="Internal-ESXi-Check"
 )
 # 指定したダッシュボードのうち、スクリーンショットを取得する順番を指定する
-dashboard_order=("aefowcgoe7apsd" "aefp3nsnews1sb" "aefp1an9r7zswa" "befp3fsjb13pcd" "bei9na4x5w64gd")
-
+# dashboard_order=("aefowcgoe7apsd" "aefp3nsnews1sb" "aefp1an9r7zswa" "befp3fsjb13pcd" "bei9na4x5w64gd")
+dashboard_order=("aefowcgoe7apsd" "aefp3nsnews1sb" "aefp1an9r7zswa" "bei9na4x5w64gd" "befp3fsjb13pcd")
 
 # エクスポート先の確認の表示を行う
-read -p "Are you sure you want to export to \"${EXPORT_DIR}\"? [Y/n]: " confirm
-if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-  echo "Export cancelled."
-  exit 1
-fi
+# read -p "Are you sure you want to export to \"${EXPORT_DIR}\"? [Y/n]: " confirm
+# if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+#   echo "Export cancelled."
+#   exit 1
+# fi
 
 # 日付を選択または入力させる
 while true; do
@@ -77,8 +79,9 @@ for dashboard_id in "${dashboard_order[@]}"; do
     panel_ids=$(echo "${DASHBOARDS[$dashboard_id]}" | tr ',' '\n')
     dashboard_name="${NAMES[$dashboard_id]}"
     for panel_id in $panel_ids; do
-      output_file="grafana-$(date +'%Y%m%d-%H%M%S')-${dashboard_name}-${panel_id}.png"
-      curl -s "${GRAFANA_URL}/render/d-solo/${dashboard_id}?orgId=1&panelId=${panel_id}&width=${IMAGE_WIDTH}&height=${IMAGE_HEIGHT}&from=${EXPORT_DATE}T${START_TIME_UTC}.000Z&to=${EXPORT_DATE}T${END_TIME_UTC}.000Z&timezone=UTC" -u "${GRAFANA_AUTH}" > "${output_file}"
+      output_file="$(date -u +'%Y%m%d-%H%M%S' --date='9 hours')-${dashboard_name}-${panel_id}.png" # UTC
+      # output_file="$(date +'%Y%m%d-%H%M%S')-${dashboard_name}-${panel_id}.png" # JST
+      curl -s "${GRAFANA_URL}/render/d-solo/${dashboard_id}?orgId=1&panelId=${panel_id}&width=${IMAGE_WIDTH}&height=${IMAGE_HEIGHT}&from=${EXPORT_DATE}T${START_TIME_UTC}.000Z&to=${EXPORT_DATE}T${END_TIME_UTC}.000Z&timezone=UTC" -u "${GRAFANA_AUTH}" > "${EXPORT_DIR}/${output_file}"
       echo "Image saved to ${EXPORT_DIR}/${output_file}"
     done
   else
