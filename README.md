@@ -2,7 +2,7 @@
 
 監視作業のアシスタントツールです。
 ```
-git clone https://github.com/cdsl-research/monitoring-report-assistant.git
+$ git clone https://github.com/cdsl-research/monitoring-report-assistant.git
 ```
 
 ## get-grafana-panel-images.sh
@@ -13,7 +13,7 @@ git clone https://github.com/cdsl-research/monitoring-report-assistant.git
 
 シェルスクリプトを実行します。
 ```
-bash get-grafana-panel-images.sh
+$ bash get-grafana-panel-images.sh
 ```
 
 画像を現在のディレクトリに保存してよいか、確認します。（Y:はい / n:いいえ)
