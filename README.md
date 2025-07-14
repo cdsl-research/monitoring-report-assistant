@@ -53,15 +53,25 @@ Enter the time range. (JST, start-end, e.g., 09:00-12:00): 09:00-12:00
 
 ### 実行結果の例
 ```
-$ bash get-grafana-panel-images.sh 
-Are you sure you want to export to "/home/c0a22100/monitoring-report-assistant"? [Y/n]: Y
-Select a date. Enter 1 to select today's date, or specify a date (e.g., 2025-05-17): 1
+Select a date. Enter 1 to select today's date, or specify a date (e.g., 2025-06-10): 2025-07-14
 Enter the time range. (JST, start-end, e.g., 09:00-12:00): 09:00-12:00
-Image saved to /home/c0a22100/monitoring-report-assistant/grafana-20250518-113005-External-Clematis-Node-Check-1.png
-Image saved to /home/c0a22100/monitoring-report-assistant/grafana-20250518-113007-External-Clematis-Node-Check-2.png
-...
-Image saved to /home/c0a22100/monitoring-report-assistant/grafana-20250518-113040-Internal-ESXi-3.png
-Image saved to /home/c0a22100/monitoring-report-assistant/grafana-20250518-113042-Internal-ESXi-4.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102428-External-Clematis-Node-Check-1.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102430-External-Clematis-Node-Check-2.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102432-External-Clematis-Node-Check-4.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102434-External-Clematis-Node-Check-5.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102436-External-Clematis-Node-Check-6.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102438-External-Clematis-Node-Check-7.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102440-External-Clematis-Node-Check-8.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102442-External-OpenVPN-Check-1.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102444-External-ESXi-Check-1.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102446-External-ESXi-Check-2.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102448-External-ESXi-Check-3.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102450-External-ESXi-Check-4.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102453-Internal-ESXi-Check-1.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102455-Internal-ESXi-Check-2.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102457-Internal-ESXi-Check-3.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102459-Internal-ESXi-Check-4.png
+Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102501-Internal-NAS-Check-1.png
 ```
 
 ### 取得した画像の例
