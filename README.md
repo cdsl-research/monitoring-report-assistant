@@ -53,6 +53,7 @@ Enter the time range. (JST, start-end, e.g., 09:00-12:00): 09:00-12:00
 
 ### 実行結果の例
 ```
+$ bash get-grafana-panel-images.sh 
 Select a date. Enter 1 to select today's date, or specify a date (e.g., 2025-06-10): 2025-07-14
 Enter the time range. (JST, start-end, e.g., 09:00-12:00): 09:00-12:00
 Image saved to /home/cdsl/monitoring-report-assistant/grafana-panel-images/20250714-102428-External-Clematis-Node-Check-1.png
